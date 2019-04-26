@@ -11,7 +11,7 @@ const appConfig = require('./config/appConfig');
 const logger = require('./app/libs/loggerLib');
 const routeLoggerMiddleware = require('./app/middlewares/routeLogger.js');
 const globalErrorMiddleware = require('./app/middlewares/appErrorHandler');
-const socketLib = require("./app/libs/socketLib");
+
 const morgan = require('morgan');
 const helmet = require('helmet');
 
@@ -37,6 +37,11 @@ app.use(globalErrorMiddleware.globalErrorHandler);
  */
 app.use(express.static(path.join(__dirname, 'client')));
 
+const modelsPath = './app/models';
+const controllersPath = './app/controllers';
+const libsPath = './app/libs';
+const middlewaresPath = './app/middlewares';
+const routesPath = './app/routes';
 
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -90,7 +95,7 @@ server.on('listening', onListening);
 
 
 //---------------- socket io connection handler -----------------
-
+const socketLib = require("./app/libs/socketLib");
 const socketServer = socketLib.setServer(server);
 // --------------- end socketio connection handler --------------
 

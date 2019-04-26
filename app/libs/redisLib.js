@@ -15,19 +15,19 @@ let getFollowersAndIssueListHash = (hashName, callback) => {
 
         if (err) {
 
-            console.log(err);
+            // console.log(err);
             callback(err, null)
 
         } else if (check.isEmpty(result)) {
 
-            console.log("online user list is empty");
-            console.log(result)
+            // console.log("online user list is empty");
+            // console.log(result)
 
             callback(null, {})
 
         } else {
 
-            console.log(result);
+            // console.log(result);
             callback(null, result)
 
         }
@@ -41,12 +41,12 @@ let setFollowersAndIssueListHash = (hashName, key, value, callback) => {
 
     client.HMSET(hashName, [key, value], (err, result) => {
         if (err) {
-            console.log(err);
+            // console.log(err);
             callback(err, null)
         } else {
 
-            console.log("user has been set in the hash map");
-            console.log(result)
+            // console.log("user has been set in the hash map");
+            // console.log(result)
             callback(null, result)
         }
     });

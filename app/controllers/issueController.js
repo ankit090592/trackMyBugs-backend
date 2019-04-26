@@ -66,7 +66,7 @@ let getAllIssuesFunction = (req, res) => {
     return new Promise((resolve, reject) => {
       // creating find query.
       let findQuery = {
-        assigneeId: req.params.userId
+        $or:[{assigneeId: req.params.userId}, {reporterId: req.params.userId}]
       }
 
       IssueModel.find(findQuery)
@@ -95,7 +95,7 @@ let getAllIssuesFunction = (req, res) => {
     .then(findIssues)
     .then((result) => {
       let apiResponse = response.generate(false, 'All Issues Listed', 200, result)
-      console.log(apiResponse);
+      // console.log(apiResponse);
       res.send(apiResponse)
     })
     .catch((error) => {
@@ -158,7 +158,7 @@ let createNewIssueFunction = (req, res) => {
       let apiResponse = response.generate(false, "New issue created successfully!", 200, newIssueData);
       res.send(apiResponse);
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.send(err);
     });
 
@@ -221,7 +221,7 @@ let getSelectedIssueByIdFunction = (req, res) => {
 let editIssueFunction = (req, res) => {
 
   let options = req.body;
-  console.log(options);
+  // console.log(options);
   
   IssueModel.findOneAndUpdate({ 'issueId': req.params.issueId }, options, { new: true })
     .select('-_id -__v')

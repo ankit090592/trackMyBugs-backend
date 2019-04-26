@@ -42,14 +42,14 @@ let sendEmailFunction = (sender,reciever,subject,plainText, message) => {
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log("Nodemailer error: ",error);
+            // console.log("Nodemailer error: ",error);
             logger.error('Failed To send e-mail', 'mailerLib: sendEmail()', 10)                    
             // let apiResponse = response.generate(true, 'Failed To send Email', 500, null)
             return false
         } else{
-        console.log('Message sent: %s', info.messageId);
+        // console.log('Message sent: %s', info.messageId);
         // Preview only available when sending through an Ethereal account
-        console.log('Preview URL: %s', nodeMailer.getTestMessageUrl(info));
+        // console.log('Preview URL: %s', nodeMailer.getTestMessageUrl(info));
         logger.info('Email sent', 'userController: sendEmail()', 10)
             return 'Email sent'
         }

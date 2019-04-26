@@ -45,7 +45,7 @@ let signUpFunction = (req, res) => {
                         let apiResponse = response.generate(true, 'Failed To Create User', 500, null)
                         reject(apiResponse)
                     } else if (check.isEmpty(retrievedUserDetails)) {
-                        console.log(req.body)
+                        // console.log(req.body)
                         let newUser = new UserModel({   
                             userId: shortid.generate(),
                             firstName: req.body.firstName,
@@ -57,7 +57,6 @@ let signUpFunction = (req, res) => {
                         })
                         newUser.save((err, newUser) => {
                             if (err) {
-                                console.log(err)
                                 logger.error(err.message, 'userController: createUser', 10)
                                 let apiResponse = response.generate(true, 'Failed to save new User', 500, null)
                                 reject(apiResponse)
@@ -89,7 +88,6 @@ let signUpFunction = (req, res) => {
             res.send(apiResponse)
         })
         .catch((err) => {
-            console.log(err);
             res.send(err);
         })
 
@@ -100,15 +98,12 @@ let signUpFunction = (req, res) => {
 
 let signinFunction = (req, res) => {
     let findUser = () => {
-        console.log("findUser");
         return new Promise((resolve, reject) => {
             if (req.body.email) {
-                console.log("req body email is there");
-                console.log(req.body);
+                
                 UserModel.findOne({ email: req.body.email }, (err, userDetails) => {
                     /* handle the error here if the User is not found */
                     if (err) {
-                        console.log(err)
                         logger.error('Failed To Retrieve User Data', 'userController: findUser()', 10)
                         /* generate the error message and the api response message here */
                         let apiResponse = response.generate(true, 'Failed To Find User Details', 500, null)
@@ -133,11 +128,9 @@ let signinFunction = (req, res) => {
         })
     }
     let validatePassword = (retrievedUserDetails) => {
-        console.log("validatePassword");
         return new Promise((resolve, reject) => {
             passwordLib.comparePassword(req.body.password, retrievedUserDetails.password, (err, isMatch) => {
                 if (err) {
-                    console.log(err)
                     logger.error(err.message, 'userController: validatePassword()', 10)
                     let apiResponse = response.generate(true, 'Internal error: signin Failed', 500, null)
                     reject(apiResponse)
@@ -159,11 +152,10 @@ let signinFunction = (req, res) => {
     }
 
     let generateToken = (userDetails) => {
-        console.log("generate token");
         return new Promise((resolve, reject) => {
             token.generateToken(userDetails, (err, tokenDetails) => {
                 if (err) {
-                    console.log(err)
+                    logger.error(err.message, 'userController: generateToken()', 10)
                     let apiResponse = response.generate(true, 'Failed To Generate Token', 500, null)
                     reject(apiResponse)
                 } else {
@@ -175,11 +167,10 @@ let signinFunction = (req, res) => {
         })
     }
     let saveToken = (tokenDetails) => {
-        console.log("save token");
         return new Promise((resolve, reject) => {
             AuthModel.findOne({ userId: tokenDetails.userId }, (err, retrievedTokenDetails) => {
                 if (err) {
-                    console.log(err.message, 'userController: saveToken', 10)
+                    logger.error(err.message,'userController:saveToken()',10)
                     let apiResponse = response.generate(true, 'Failed To Generate Token', 500, null)
                     reject(apiResponse)
                 } else if (check.isEmpty(retrievedTokenDetails)) {
@@ -191,7 +182,6 @@ let signinFunction = (req, res) => {
                     })
                     newAuthToken.save((err, newTokenDetails) => {
                         if (err) {
-                            console.log(err)
                             logger.error(err.message, 'userController: saveToken', 10)
                             let apiResponse = response.generate(true, 'Failed To save Token', 500, null)
                             reject(apiResponse)
@@ -209,7 +199,6 @@ let signinFunction = (req, res) => {
                     retrievedTokenDetails.tokenGenerationTime = time.now()
                     retrievedTokenDetails.save((err, newTokenDetails) => {
                         if (err) {
-                            console.log(err)
                             logger.error(err.message, 'userController: saveToken', 10)
                             let apiResponse = response.generate(true, 'Failed To renew Token', 500, null)
                             reject(apiResponse)
@@ -231,12 +220,12 @@ let signinFunction = (req, res) => {
         .then(generateToken)
         .then(saveToken)
         .then((resolve) => {
-            console.log("Signin Resolve: " +resolve)
+            // console.log("Signin Resolve: " +resolve)
             let apiResponse = response.generate(false, 'Signin successful', 200, resolve)
             res.send(apiResponse)
         })
         .catch((err) => {
-            console.log("Signin errorhandler: " + JSON.stringify(err))
+            // console.log("Signin errorhandler: " + JSON.stringify(err))
             // res.status(err.status)
             res.send(err)
         })
@@ -251,7 +240,7 @@ let signinFunction = (req, res) => {
 let logoutFunction = (req, res) => {
     AuthModel.findOneAndRemove({ userId: req.params.userId }, (err, result) => {
         if (err) {
-            console.log(err)
+            // console.log(err)
             logger.error(err.message, 'user Controller: logout', 10)
             let apiResponse = response.generate(true, `error occurred: ${err.message}`, 500, null)
             res.send(apiResponse)
