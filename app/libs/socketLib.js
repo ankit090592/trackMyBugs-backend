@@ -125,13 +125,19 @@ let setServer = (server) => {
                                             console.log("created & joined a new issue, issueId:" + data.issueId)
                                             // doubtful - whether required to emit or not here
                                             socket.emit(data.issueId, result)
-
                                         }
                                     })
                                 }
                             })
                         }
                     })
+                })
+
+
+                socket.on('notify-assignee-new-issue',(data) => {
+                    console.log("notify-assignee-new-issue called.")
+                    // socket.to(data).broadcast.emit('update-issue-list',data)
+                    myIo.emit('update-issue-list',data)
                 })
 
                 /**
