@@ -1,15 +1,15 @@
 define({
-  "name": "Issue Tracking Tool",
+  "name": "Bug Tracker Tool",
   "version": "1.0.0",
-  "description": "API Documentation for Issue Tracking Tool",
+  "description": "API Documentation for Bug Tracker Tool",
   "title": "issueTracking APIs",
-  "url": "http://localhost:4900",
+  "url": "http://api.appdevtest.xyz",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2019-04-13T19:28:14.390Z",
+    "time": "2019-04-30T19:25:08.744Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }

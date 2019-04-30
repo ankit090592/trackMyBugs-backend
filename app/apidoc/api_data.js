@@ -89,7 +89,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "\n    {\n    \"error\": false,\n    \"message\": \"New issue created successfully!\",\n    \"status\": 200,\n    \"data\": {\n        \"issueId\": \"_BBtxvirJ\",\n        \"title\": \"abc\",\n        \"reporter\": \"xyz\",\n        \"reporterId\": \"nWBMsoifj\",\n        \"assignee\": \"new user\",\n        \"assigneeId\": \"nWBMsoifj\",\n        \"status\": \"Done\",\n        \"description\": \"desc\",\n        \"createdOn\": \"2019-04-13T11:56:11.000Z\",\n        \"comments\": []\n    }\n}",
+          "content": "\n    {\n    \"error\": false,\n    \"message\": \"New issue created successfully!\",\n    \"status\": 200,\n    \"data\": {\n        \"issueId\": \"_BBtxvirJ\",\n        \"title\": \"abc\",\n        \"reporter\": \"xyz\",\n        \"reporterId\": \"nWBMsoifj\",\n        \"assignee\": \"new user\",\n        \"assigneeId\": \"nWBMsoifj\",\n        \"status\": \"Done\",\n        \"description\": \"desc\",\n        \"createdOn\": \"2019-04-25T11:56:11.000Z\",\n        \"comments\": []\n    }\n}",
           "type": "object"
         }
       ]
@@ -148,7 +148,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:    ",
-          "content": "{\n    \"error\": false,\n    \"message\": \"All Issues Listed\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-02T11:52:04.000Z\",\n            \"comments\": []\n        }",
+          "content": "{\n    \"error\": false,\n    \"message\": \"All Issues Listed\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-25T11:52:04.000Z\",\n            \"comments\": []\n        }",
           "type": "object"
         }
       ]
@@ -200,7 +200,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"error\": false,\n    \"message\": \"Users found successfully\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"userId\": \"ZYQBBFs5U\",\n            \"lastName\": \"amn\",\n            \"createdOn\": \"2019-01-08T14:57:44.000Z\",\n            \"firstName\": \"abc\",\n            \"email\": \"amn@mail.com\",\n            \"mobileNumber\": \"9876543210\"\n        }",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Users found successfully\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"userId\": \"ZYQBBFs5U\",\n            \"lastName\": \"amn\",\n            \"createdOn\": \"2019-04-25T14:57:44.000Z\",\n            \"firstName\": \"abc\",\n            \"email\": \"amn@mail.com\",\n            \"mobileNumber\": \"9876543210\"\n        }",
           "type": "object"
         }
       ]
@@ -259,7 +259,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:    ",
-          "content": "{\n    \"error\": false,\n    \"message\": \"Issue found!\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-02T11:52:04.000Z\",\n            \"comments\": []\n        }",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Issue found!\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-25T11:52:04.000Z\",\n            \"comments\": []\n        }",
           "type": "object"
         }
       ]
@@ -318,7 +318,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:    ",
-          "content": " \n{\n        \"error\": false,\n        \"message\": \"Issue edited successfully\",\n        \"status\": 200,\n        \"data\": {\n            \"issueId\": \"_BBtxvirJ\",\n            \"title\": \"abcsff\",\n            \"reporter\": \"xyz\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"new user\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"Done\",\n            \"description\": \"desc\",\n            \"createdOn\": \"2019-04-13T11:56:11.000Z\",\n            \"comments\": [\n                {\n                    \"commentDate\": \"2019-04-13T10:50:25.577Z\",\n                    \"commenterId\": \"_BBtxvirJ\",\n                    \"commenterName\": \"gh\",\n                    \"commentText\": \"rytytytyy\"\n                }\n            ]\n        }\n    }",
+          "content": " \n{\n        \"error\": false,\n        \"message\": \"Issue edited successfully\",\n        \"status\": 200,\n        \"data\": {\n            \"issueId\": \"_BBtxvirJ\",\n            \"title\": \"abcsff\",\n            \"reporter\": \"xyz\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"new user\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"Done\",\n            \"description\": \"desc\",\n            \"createdOn\": \"2019-04-25T11:56:11.000Z\",\n            \"comments\": [\n                {\n                    \"commentDate\": \"2019-04-13T10:50:25.577Z\",\n                    \"commenterId\": \"_BBtxvirJ\",\n                    \"commenterName\": \"gh\",\n                    \"commentText\": \"rytytytyy\"\n                }\n            ]\n        }\n    }",
           "type": "object"
         }
       ]
@@ -377,7 +377,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:    ",
-          "content": "{\n    \"error\": false,\n    \"message\": \"Issue edited successfully!\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-02T11:52:04.000Z\",\n            \"comments\": []\n        }",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Issue edited successfully!\",\n    \"status\": 200,\n    \"data\": [\n        {\n            \"issueId\": \"0RAnzS2rn\",\n            \"title\": \"x\",\n            \"reporter\": \"welcome new\",\n            \"reporterId\": \"nWBMsoifj\",\n            \"assignee\": \"welcome new\",\n            \"assigneeId\": \"nWBMsoifj\",\n            \"status\": \"in-Test\",\n            \"description\": \"<p>erer</p>\",\n            \"createdOn\": \"2019-04-25T11:52:04.000Z\",\n            \"comments\": []\n        }",
           "type": "object"
         }
       ]

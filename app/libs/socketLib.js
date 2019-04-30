@@ -1,12 +1,9 @@
 const mongoose = require('mongoose')
 const socketio = require('socket.io')
-
-const events = require('events')
-
 const tokenLib = require('./tokenLib')
 const redisLib = require('./redisLib')
-const shortid = require('shortid')
-const issueModel = mongoose.model('Issue')
+const logger = require('./../libs/loggerLib');
+
 
 //called from app.js
 //getting http server from there
@@ -65,27 +62,53 @@ let setServer = (server) => {
                     // result variable will give issues array
                     redisLib.getFollowersAndIssueListHash(currentUser.userId, (err, result) => {
                         if (err) {
-                            console.log(err)
+                            logger.error(err, 'set-user: Redislib getFollowersAndIssueListHash', 10)
                         }
                         else {
-                            console.log(result)
                             for (let issue in result) {
                                 socket.join(issue)
-                                console.log("Joined issue:" + issue)
+                                // console.log("Joined issue:" + issue)
                             }
                         }
 
                     })
                 }
 
+                // -----------------
+                /**
+                * @apiGroup Listen 
+                * @apiVersion 1.0.0                
+                * @api {listen} startUserRoom Notifying client of a new room creation                
+                * @apiDescription <b>("startUserRoom")</b>
+               */
+                socket.emit('startUserRoom', '')
+
+
+                /**
+                * @apiGroup Emit 
+                * @apiVersion 1.0.0                
+                * @api {emit} joinUserRoom A user joins a socket room to receive updates related only to him.
+                * @apiDescription <b>("joinUserRoom")<b>                
+                * @apiExample Example data
+                   {
+                       "roomId":string,
+                       "userId":string,
+                       "userName":string
+                   }
+               */
+                socket.on('joinUserRoom', (data) => {
+                    socket.room = data.userId
+                    // console.log("Joining user room: " + socket.room)
+                    socket.join(socket.room)
+                })
+                // -----------------
 
                 /**
                 * @apiGroup Emit 
                 * @apiVersion 1.0.0                
                 * @api {emit} follow-issue Follow the current/selected issue when
                 * either "follow" is checked or a new issue is created                         
-                * @apiDescription <b>("follow-issue")<b>
-                
+                * @apiDescription <b>("follow-issue")<b>                
                */
 
                 // user created new issue or clicked on follow issue
@@ -123,7 +146,6 @@ let setServer = (server) => {
                                             console.log(result)
                                             socket.join(data.issueId)
                                             console.log("created & joined a new issue, issueId:" + data.issueId)
-                                            // doubtful - whether required to emit or not here
                                             socket.emit(data.issueId, result)
                                         }
                                     })
@@ -134,11 +156,20 @@ let setServer = (server) => {
                 })
 
 
-                socket.on('notify-assignee-new-issue',(data) => {
+
+                /**
+                * @apiGroup Emit 
+                * @apiVersion 1.0.0                
+                * @api {emit} notify-assignee-new-issue Notify a user that he has been assigned a new issue.
+                * @apiDescription <b>("notify-assignee-new-issue")<b>                
+                */
+                socket.on('notify-assignee-new-issue', (data) => {
                     console.log("notify-assignee-new-issue called.")
-                    // socket.to(data).broadcast.emit('update-issue-list',data)
-                    myIo.emit('update-issue-list',data)
+                    // socket.to(socket.room).broadcast.emit('update-issue-list',data)
+                    io.sockets.in(data.assigneeId).emit('update-issue-list', data)
                 })
+
+
 
                 /**
                 * @apiGroup Emit 
@@ -169,7 +200,6 @@ let setServer = (server) => {
                             console.log("updated followers list: " + JSON.stringify(result))
                             socket.leave(data.issueId)
 
-                            // doubtful - whether required to emit or not here
                             socket.emit(data.issueId, result)
                         }
                     })
@@ -194,8 +224,7 @@ let setServer = (server) => {
         socket.on('notify-all-followers', (data) => {
             // all the users who joined the room whose id is data.issueId will get a notification
             socket.to(data.issueId).broadcast.emit('notification', data)
-            console.log("Broadcasting to all followers")
-            console.log(data)
+            console.log("Broadcasting to all followers" + data)
         })
 
 
