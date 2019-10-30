@@ -22,7 +22,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.23",
-    "mongoose": "^5.4.1",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "nodemailer": "^5.0.0",
     "pino": "^5.10.5",
